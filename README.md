@@ -1,8 +1,8 @@
 # Medical Insurance Cost Prediction using Multiple Linear Regression
-
+**Harshit Dwivedi**
 ## Objective
-Predict medical insurance charges of customers based on personal and
-health-related information using a Multiple Linear Regression model.
+Build a Multiple Linear Regression model that estimates a customer's medical
+insurance charges from their personal and health-related details.
 
 ## Dataset Link
 Medical Cost Personal Insurance Dataset (Kaggle):
@@ -15,16 +15,17 @@ https://www.kaggle.com/datasets/mirichoi0218/insurance
 - matplotlib
 
 ## Methodology
-1. Loaded the dataset and identified numerical features (age, bmi, children),
-   categorical features (sex, smoker, region), and the target variable
-   (charges).
-2. Checked for missing values (none found), encoded categorical variables
-   (label encoding for sex/smoker, one-hot encoding for region), and split
-   the data into 80% training and 20% testing sets.
-3. Trained a Multiple Linear Regression model using age, sex, bmi, children,
-   smoker, and region to predict charges.
-4. Evaluated the model using MAE, MSE, and R2 Score, and plotted actual vs
-   predicted charges.
+1. Loaded the dataset and separated it into numerical columns (age, bmi,
+   children), categorical columns (sex, smoker, region), and the target
+   column (charges).
+2. Verified there were no missing values, converted the categorical columns
+   into numeric form (label encoding for sex and smoker, one-hot encoding
+   for region), then split the data 80/20 into training and test sets.
+3. Fit a Multiple Linear Regression model on age, sex, bmi, children,
+   smoker, and region to predict charges, and generated predictions on the
+   test set.
+4. Assessed performance using MAE, MSE, and R2 Score, and visualized the
+   fit with an actual vs predicted scatter plot.
 
 ## Results
 | Metric | Value |
@@ -34,26 +35,24 @@ https://www.kaggle.com/datasets/mirichoi0218/insurance
 | R2 Score | 0.7836 |
 
 **Observations:**
-1. Smoking status has the strongest positive effect on predicted charges,
-   with a coefficient far larger than any other feature.
-2. Age and BMI both increase predicted charges, but their effect is much
-   smaller than smoking status.
-3. The R2 score (0.78) shows the model explains most of the variance in
-   charges, but the actual vs predicted plot shows higher error for
-   high-charge cases, suggesting a non-linear relationship the model does
-   not fully capture.
+1. Smoker status carries by far the largest coefficient, making it the
+   single biggest factor pushing charges up.
+2. Age and bmi also push charges higher, though their impact is noticeably
+   smaller than smoking.
+3. An R2 of 0.78 means the model captures most of the variation in charges,
+   but the scatter plot reveals larger errors at the high end, pointing to a
+   non-linear pattern the model can't fully represent.
 
 ## Conclusion
-This project used Multiple Linear Regression to predict medical insurance
-charges from age, sex, BMI, number of children, smoking status, and region.
-Smoking status was found to be the strongest driver of charges, followed by
-age and BMI, while sex and region had a much smaller influence. The model
-achieved a reasonable fit on the test data, with the R2 score indicating that
-a large portion of the variance in charges is explained by these features.
-However, the relationship between charges and predictors such as BMI and
-smoking is not purely linear in reality (e.g., charges rise sharply for
-smokers with high BMI), which limits the model's accuracy for such cases.
-A key limitation of Linear Regression here is its assumption of linear,
-additive relationships between features and the target, which prevents it
-from capturing interaction effects (such as smoker x BMI) without manual
-feature engineering.
+This project applied Multiple Linear Regression to estimate medical
+insurance charges using age, sex, bmi, children, smoker status, and region.
+Smoker status emerged as the dominant factor behind higher charges, with age
+and bmi contributing to a lesser extent, while sex and region played only a
+minor role. The resulting model fit the test data reasonably well, and its
+R2 score confirms that these variables account for a large share of the
+variation in charges. That said, real-world charge patterns — such as the
+sharp jump seen when high bmi combines with smoking — are not strictly
+linear, so the model's predictions lose accuracy in those cases. This points
+to a core limitation of Linear Regression: it assumes purely linear, additive
+relationships and therefore cannot capture interaction effects like
+smoker x bmi unless they are engineered into the feature set manually.
